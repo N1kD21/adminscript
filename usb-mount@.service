@@ -1,0 +1,10 @@
+[Unit]
+Description=Mount _Flashka_ USB Drive on %i1
+
+
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/local/bin/usb-mount.sh add %i1
+ExecStop=/usr/local/bin/usb-mount.sh remove %i1

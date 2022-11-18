@@ -1,0 +1,9 @@
+/var/spool/cron/crontabs/bot4voc
+/etc/udev/rules.d/99-local.rules
+/etc/systemd/system/usb-mount@.service
+/usr/local/bin/usb-mount.sh
+/home/bot4voc/source/crontabconf/ngrok.sh
+/var/log/bot4voc/crontabngrok.log
+/home/bot4voc/source/crontabconf/gitnodejs.sh
+/home/bot4voc/source/crontabconf/variables_bash.sh
+/var/log/bot4voc/crontabgitnodejs.log
