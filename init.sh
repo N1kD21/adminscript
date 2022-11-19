@@ -148,10 +148,13 @@ else
 		rm -v ${HOMELOG}/crontabgitnodejs.log
 
 		#logrotate del
-		echo "unlink /etc/logrotate.conf"
-		unlink  /etc/logrotate.conf
-		mv /etc/logrotate.conf_old /etc/logrotate.conf
 
+                if test -f /etc/logrotate.conf_old
+		then
+			echo "unlink /etc/logrotate.conf"
+			unlink  /etc/logrotate.conf
+			mv /etc/logrotate.conf_old /etc/logrotate.conf
+		fi
        	fi
 fi
 
