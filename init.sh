@@ -100,7 +100,7 @@ else
 		chown $USERBOT:$USERBOT ${HOMELOG}/crontabgitnodejs.log
 
 		# rotation log
-		if test -f /usr/local/bin/usb-mount.sh ;
+		if test -f /etc/logrotate.conf_old ;
                 then
                         echo "File is empty"
                 else
