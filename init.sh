@@ -33,24 +33,38 @@ use()
 if [ $# -eq 0 ]
 then
 
-    use	
+    use
 
 else
-	# install 
+	# install
 	if [ "$1" = "i" ]; then
 		#  автоматическое монтирование флешки
 
 		echo "Установка автоматического монтирования"
 
-                echo "ln -s ${HOMEADMIN}/99-local.rules /etc/udev/rules.d/"
-                ln -v -s ${HOMEADMIN}/99-local.rules /etc/udev/rules.d/
+		if test -f /etc/udev/rules.d/99-local.rules ;
+		then
+	                echo "File is empty"
+		else
+                        echo "ln -s ${HOMEADMIN}/99-local.rules /etc/udev/rules.d/"
+                        ln -v -s ${HOMEADMIN}/99-local.rules /etc/udev/rules.d/
+		fi
 
-		echo "ln -s ${HOMEADMIN}/usb-mount@.service /etc/systemd/system/"
-                ln -v -s ${HOMEADMIN}/usb-mount@.service /etc/systemd/system/
+                if test -f /etc/systemd/system/usb-mount@.service ;
+                then
+                        echo "File is empty"
+                else
+			echo "ln -s ${HOMEADMIN}/usb-mount@.service /etc/systemd/system/"
+	                ln -v -s ${HOMEADMIN}/usb-mount@.service /etc/systemd/system/
+		fi
 
-                echo "ln -s ${HOMEADMIN}/usb-mount.sh /usr/local/bin/"
-                ln -v -s ${HOMEADMIN}/usb-mount.sh /usr/local/bin/
-
+                if test -f /usr/local/bin/usb-mount.sh ;
+                then
+                        echo "File is empty"
+                else
+	                echo "ln -s ${HOMEADMIN}/usb-mount.sh /usr/local/bin/"
+	                ln -v -s ${HOMEADMIN}/usb-mount.sh /usr/local/bin/
+		fi
 
 
 
@@ -86,12 +100,16 @@ else
 		chown $USERBOT:$USERBOT ${HOMELOG}/crontabgitnodejs.log
 
 		# rotation log
+		if test -f /usr/local/bin/usb-mount.sh ;
+                then
+                        echo "File is empty"
+                else
+			mv /etc/logrotate.conf /etc/logrotate.conf_old
 
-		mv /etc/logrotate.conf /etc/logrotate.conf_old
-
-		echo "ln -s ${HOMEADMIN}/logrotate.conf /etc/logrotate.conf"
-                ln -v -P ${HOMEADMIN}/logrotate.conf /etc/logrotate.conf
-
+			echo "ln -s ${HOMEADMIN}/logrotate.conf /etc/logrotate.conf"
+	                ln -v -P ${HOMEADMIN}/logrotate.conf /etc/logrotate.conf
+			chown root:root /etc/logrotate.conf
+		fi
 	fi
 	# uninstall
 	if [ "$1" = "d" ] ; then
