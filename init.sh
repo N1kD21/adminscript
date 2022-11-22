@@ -36,7 +36,6 @@ use()
 	exit 1
 }
 
-
 if [ $# -eq 0 ]
 then
 
@@ -45,6 +44,26 @@ then
 else
 	if [ "$USERBOT" = "$SUDO_USER" ];
 	then
+		#testing
+		if [ "$1" = "t" ]; then
+			echo "Name not provided. Usage $0 {i|d}"
+		        echo "$USER      -> ${HOME}"
+		        echo "Userbot -> $USERBOT"
+		        echo "HomeAdmin -> $HOMEADMIN"
+		        echo "HomeCron -> $HOMECRON"
+		        echo "Homelog -> $HOMELOG"
+		        ls -al -v /usr/local/bin/usb-mount.sh
+		        ls -al -v /etc/udev/rules.d/99-local.rules
+		        ls -al -v /etc/systemd/system/usb-mount@.service
+		        ls -al -v /mnt/${PATHFLASHKA}
+		        ls -al -v ${HOMELOG}
+		        ls -al -v ${HOMECRON}
+		        ls -al -v /etc/logrotate.conf
+		        ls -al -v /etc/logrotate.conf_old
+		        crontab -l -u $USERBOT
+		        exit 1
+		fi
+
 		# install
 		if [ "$1" = "i" ]; then
 			#  автоматическое монтирование флешки
