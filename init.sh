@@ -142,6 +142,7 @@ else
 				echo "ln -s ${HOMEADMIN}/logrotate.conf /etc/logrotate.conf"
 		                ln -v -P ${HOMEADMIN}/logrotate.conf /etc/logrotate.conf
 				chown root:root /etc/logrotate.conf
+				chmod 0644 /etc/logrotate.conf
 			fi
 		fi
 		# uninstall
