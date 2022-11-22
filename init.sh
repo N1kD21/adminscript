@@ -97,7 +97,7 @@ else
 
 			# crontab
 			mkdir -v ${HOMECRON}
-			crontab -u $USERBOT ${HOMEADMIN}/$USERBOT.crontab
+			crontab -u $USERBOT ${HOMEADMIN}/base.crontab
 
 
 	                echo "ln -s ${HOMEADMIN}/crontabconf.conf ${HOMECRON}"
