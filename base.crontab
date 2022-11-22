@@ -1,5 +1,5 @@
 #Telegram
-*/5 * * * 1-7  . $HOME/source/crontabconf/gitnodejs.sh t $LOGNAME >> /hoem/$LOGNAME/log/gitnodejs.log 2>&1
+*/5 * * * 1-7  . $HOME/source/crontabconf/gitnodejs.sh t $LOGNAME >> /home/$LOGNAME/log/gitnodejs.log 2>&1
 
 
 #Ngrok
