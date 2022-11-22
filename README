@@ -1,9 +1,30 @@
-/var/spool/cron/crontabs/bot4voc
+1. Создаем пользователя с root правами
+2. Заходим под пользователем
+3. Копируем скрипт setup.sh в /home/$USERBOT
+4. Запускаем скрипт ./setup.sh $USERBOT (с именем пользователя как 1-й переменной)
+5. Вводим логин/пароль для скачивания скрипта с github
+6. Заходим в директорию /home/$USERBOT/source/adminscript
+7. Запускаем скрипт sudo -s sh ./init.sh i $USERBOT (с именем пользователя как 2-й переменной)
+
+
+#USB
 /etc/udev/rules.d/99-local.rules
 /etc/systemd/system/usb-mount@.service
 /usr/local/bin/usb-mount.sh
+
+
+#CRON
+/var/spool/cron/crontabs/bot4voc
+
 /home/bot4voc/source/crontabconf/ngrok.sh
-/var/log/bot4voc/crontabngrok.log
 /home/bot4voc/source/crontabconf/gitnodejs.sh
 /home/bot4voc/source/crontabconf/variables_bash.sh
+
+/home/bot4voc/log/gitnodejs.log
+/home/bot4voc/log/ngrok.log
+
+
+
+#LOG
 /var/log/bot4voc/crontabgitnodejs.log
+/var/log/bot4voc/crontabngrok.log
