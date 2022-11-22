@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-LOG=/var/log/$LOGNAME/crontabngrok.log
+LOG=/home/$LOGNAME/log/ngrok.log
 
 echo "Zashel.     id"  >> $LOG
 id >> $LOG
