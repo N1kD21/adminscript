@@ -46,7 +46,6 @@ else
 	then
 		#testing
 		if [ "$1" = "t" ]; then
-			echo "Name not provided. Usage $0 {i|d}"
 		        echo "$USER      -> ${HOME}"
 		        echo "Userbot -> $USERBOT"
 		        echo "HomeAdmin -> $HOMEADMIN"
