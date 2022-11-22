@@ -4,9 +4,9 @@
 # var1="default value for var1"
 # var1="default value for var2"
 if [ $# -eq 0 ]
-then 
+then
 	echo "Name not provided"
-else	
+else
 	if [ "$1" = "t" ]; then
 	       nameFile=telegram
 	fi
@@ -19,14 +19,14 @@ else
 fi
 
 
-if test -f /mnt/usb-UFD_2.0_Silicon-Power16G_1108111600001358-0:0-part1/$2/etc/${nameFile}.config ; 
+if test -f /mnt/KEY/$2/etc/${nameFile}.config ;
 then
-  	. /mnt/usb-UFD_2.0_Silicon-Power16G_1108111600001358-0:0-part1/$2/etc/${nameFile}.config
+  	. /mnt/KEY/$2/etc/${nameFile}.config
 	echo "$TOKEN_DEV2"
 else
-	if test -f /mnt/usb-JetFlash_Transcend_4GB_H3ECYDSW-0:0-part1/$2/etc/${nameFile}.config ; 
+	if test -f /mnt/KEY/$2/etc/${nameFile}.config ;
 	then
-        	. /mnt/usb-JetFlash_Transcend_4GB_H3ECYDSW-0:0-part1/$2/etc/${nameFile}.config
+        	. /mnt/KEY/$2/etc/${nameFile}.config
         	echo "$TOKEN_DEV2"
 	else
 		echo "$var2"

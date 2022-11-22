@@ -44,13 +44,13 @@ else
         fi
 fi
 
-if test -f /mnt/usb-UFD_2.0_Silicon-Power16G_1108111600001358-0:0-part1/$2/etc/${nameFile}.config ;
+if test -f /mnt/KEY/$2/etc/${nameFile}.config ;
 then
 	cd /home/$2/source/${nameDir}
 	echo "git pull origin dev2"
 	git pull origin dev2
 
- 	. /mnt/usb-UFD_2.0_Silicon-Power16G_1108111600001358-0:0-part1/$2/etc/${nameFile}.config
+ 	. /mnt/KEY/$2/etc/${nameFile}.config
 	export TOKEN_DEV2="$TOKEN_DEV2"
 	export TELEGRAMCHECKIN_BOT_ACCESS_TOKEN_KEY="$TELEGRAMCHECKIN_BOT_ACCESS_TOKEN_KEY"
 	export TELEGRAMCHECKIN_CHANEL_ID_KEY="$TELEGRAMCHECKIN_CHANEL_ID_KEY"
@@ -61,13 +61,13 @@ then
 	echo "node /home/$2/source/${nameDir}/main.js"
 	node /home/$2/source/${nameDir}/main.js
 else
-	if test -f /mnt/usb-JetFlash_Transcend_4GB_H3ECYDSW-0:0-part1/$2/etc/${nameFile}.config ;
+	if test -f /mnt/KEY/$2/etc/${nameFile}.config ;
 	then
         	cd /home/$2/source/${nameDir}
         	echo "git pull origin dev2"
         	git pull origin dev2\
 
-        	. /mnt/usb-JetFlash_Transcend_4GB_H3ECYDSW-0:0-part1/$2/etc/${nameFile}.config
+        	. /mnt/KEY/$2/etc/${nameFile}.config
         	export TOKEN_DEV2="$TOKEN_DEV2"
         	export TELEGRAMCHECKIN_BOT_ACCESS_TOKEN_KEY="$TELEGRAMCHECKIN_BOT_ACCESS_TOKEN_KEY"
         	export TELEGRAMCHECKIN_CHANEL_ID_KEY="$TELEGRAMCHECKIN_CHANEL_ID_KEY"
