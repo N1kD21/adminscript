@@ -1,33 +1,68 @@
 #!/bin/bash
 
+PATHCONFBOT="/home/$SUDO_USER/source/adminscript/conf"
 
 
-USERBOT=$2
 
-echo "USERBOT -> $USERBOT"
-echo "SUDO_USER -> $SUDO_USER"
+selectPathKey()
+{
+ if [ -n "$PATHFLASH" ] ;
+  then
+   PATHKEY=/mnt/$PATHFLASH/$USERBOT
+  else
+   PATHKEY=/home/$USERBOT/source/$NAMEPROJECT/conf
+  fi
+}
+
+printVar()
+{
+
+    echo "-------------------------------"
+    echo "Cодержание переменных"
+    echo "USERBOT -> $USERBOT"
+    echo "SUDO_USER -> $SUDO_USER"
+    echo "LOGNAME -> $LOGNAME"
+    echo "HOME -> $HOME"
+    echo "PATHCONFBOT -> $PATHCONFBOT"
+    echo "HOMEADMIN -> $HOMEADMIN"
+    echo "HOMECRON -> $HOMECRON"
+    echo "HOMELOG -> $HOMELOG"
+    echo "PATHFLASH -> $PATHFLASH"
+    echo "-------------------------------"
+#    printenv
+    echo "-------------------------------"
+}
 
 
-HOMEADMIN="/home/${USERBOT}/source/adminscript"
-HOMECRON="/home/${USERBOT}/source/crontabconf"
-HOMELOG="/home/${USERBOT}/log"
-PATHFLASHKA="KEY"
+loadconf()
+{
 
+    echo "Загружаем переменные"
+    #  указать путь, где лежит настройка
+    # путь временый ~/source/adminscript/conf/
+
+    if  [ -n "$SUDO_USER" ] ;
+	then
+         . $PATHCONFBOT/AdminScriptVar
+         echo "SUDO_USER -> not null."
+	else
+	 echo "SUDO_USER -> null."
+	 echo "Не удалось подгрузить файл конфигурации!"
+	 echo "Необходимо использовать sudo -s"
+    fi
+
+    printVar
+
+}
 
 use()
 {
-
         # testing
         echo "Name not provided. Usage $0 {i|d}"
-        echo "$USER      -> ${HOME}"
-        echo "Userbot -> $USERBOT"
-	echo "HomeAdmin -> $HOMEADMIN"
-	echo "HomeCron -> $HOMECRON"
-	echo "Homelog -> $HOMELOG"
         ls -al -v /usr/local/bin/usb-mount.sh
         ls -al -v /etc/udev/rules.d/99-local.rules
         ls -al -v /etc/systemd/system/usb-mount@.service
-        ls -al -v /mnt/${PATHFLASHKA}
+        ls -al -v /mnt/${PATHFLASH}
 	ls -al -v ${HOMELOG}
 	ls -al -v ${HOMECRON}
 	ls -al -v /etc/logrotate.conf
@@ -36,33 +71,15 @@ use()
 	exit 1
 }
 
+# загружаем конфигурационный файл с настройками
+loadconf
+
 if [ $# -eq 0 ]
 then
-
     use
-
 else
-	if [ "$USERBOT" = "$SUDO_USER" ];
+	if  [ "$USERBOT" = "$SUDO_USER" ] && [ -n "$USERBOT" ] && [ -n "$SUDO_USER" ] ;
 	then
-		#testing
-		if [ "$1" = "t" ]; then
-		        echo "$USER      -> ${HOME}"
-		        echo "Userbot -> $USERBOT"
-		        echo "HomeAdmin -> $HOMEADMIN"
-		        echo "HomeCron -> $HOMECRON"
-		        echo "Homelog -> $HOMELOG"
-		        ls -al -v /usr/local/bin/usb-mount.sh
-		        ls -al -v /etc/udev/rules.d/99-local.rules
-		        ls -al -v /etc/systemd/system/usb-mount@.service
-		        ls -al -v /mnt/${PATHFLASHKA}
-		        ls -al -v ${HOMELOG}
-		        ls -al -v ${HOMECRON}
-		        ls -al -v /etc/logrotate.conf
-		        ls -al -v /etc/logrotate.conf_old
-		        crontab -l -u $USERBOT
-		        exit 1
-		fi
-
 		# install
 		if [ "$1" = "i" ]; then
 			#  автоматическое монтирование флешки
@@ -123,12 +140,15 @@ else
 			else
 				mkdir -v ${HOMELOG}
 
-		                echo "cp -v ${HOMEADMIN}/ngrok.log ${HOMELOG}"
-		                cp -v ${HOMEADMIN}/ngrok.log ${HOMELOG}
+		                echo "touch ${HOMELOG}/ngrok.log"
+		                #cp -v ${HOMEADMIN}/ngrok.log ${HOMELOG}
+				touch ${HOMELOG}/ngrok.log 
 				chown $USERBOT:$USERBOT ${HOMELOG}/ngrok.log
 
-		                echo "cp -v  ${HOMEADMIN}/gitnodejs.log ${HOMELOG}"
-		                cp -v ${HOMEADMIN}/gitnodejs.log ${HOMELOG}
+		                #echo "cp -v  ${HOMEADMIN}/gitnodejs.log ${HOMELOG}"
+		                #cp -v ${HOMEADMIN}/gitnodejs.log ${HOMELOG}
+				echo "touch ${HOMELOG}/gitnodejs.log"
+				touch ${HOMELOG}/gitnodejs.log
 				chown $USERBOT:$USERBOT ${HOMELOG}/gitnodejs.log
 			fi
 
@@ -188,6 +208,7 @@ else
 			fi
 	       	fi
 	else
+		id -un
 		echo "User does not match"
 		exit
 	fi

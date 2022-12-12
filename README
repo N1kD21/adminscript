@@ -1,3 +1,4 @@
+0. Имя пользователя USERBOT должно совпадать с SUDO_USER
 1. Создаем пользователя с root правами
 2. Заходим под пользователем
 3. Копируем скрипт setup.sh в /home/$USERBOT
@@ -7,24 +8,52 @@
 7. Запускаем скрипт sudo -s sh ./init.sh i $USERBOT (с именем пользователя как 2-й переменной)
 
 
-#USB
+
+#init
+# setup.sh
+# /home/$USERBOT/source/adminscript/init/
+/home/$USERBOT/source/adminscript/init/setup.sh
+
+ 
+#conf  
+#TOKEN
+# /home/bot4voc/
+# /home/$USERBOT/source/adminscript/conf/
+
+
+
+#bin 
+
+
+#log 
+
+
+#USB flash
+# /etc/
 /etc/udev/rules.d/99-local.rules
 /etc/systemd/system/usb-mount@.service
+
+# /usr/
 /usr/local/bin/usb-mount.sh
 
-
 #CRON
+# /var/
 /var/spool/cron/crontabs/bot4voc
 
+#CRON NGROK
+# /home/bot4voc/
 /home/bot4voc/source/crontabconf/ngrok.sh
+
+#CRON NODE.js
+# /home/bot4voc/
 /home/bot4voc/source/crontabconf/gitnodejs.sh
 /home/bot4voc/source/crontabconf/variables_bash.sh
 
+#SOURCE Bot - bot4voc
+/home/bot4voc/source/Module11/
+
+#LOG
+# /home/bot4voc/log
 /home/bot4voc/log/gitnodejs.log
 /home/bot4voc/log/ngrok.log
 
-
-
-#LOG
-/var/log/bot4voc/crontabgitnodejs.log
-/var/log/bot4voc/crontabngrok.log

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#USERBOT=""
+
+
+# если указали название флешки, то берет с флешки
+# название флешки
+#PATHFLASH=""
+
+#если не указали название флешки, то берет с домашней директории
+#смотреть переменную $#PATHCONFBOT в файле  ../bin/init.sh
+#PATHCONFBOT="/home/$SUDO_USER/source/adminscript/conf"
+
+
+
+HOMEADMIN="/home/${USERBOT}/source/adminscript"
+HOMECRON="/home/${USERBOT}/source/crontabconf"
+HOMELOG="/home/${USERBOT}/log"
+

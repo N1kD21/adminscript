@@ -1,0 +1,117 @@
+@startuml
+
+
+start
+
+
+#palegreen: **Start AdminScript** ;
+floating note left: Логика настройки
+note right
+Два этапа:
+* Начальная настройка
+====
+* Постоянное использование
+** Использование с разработкой
+** Использование без разработки
+end note
+
+
+
+#HotPink: начало использования;
+
+if (Флешка вставлена ?) then (yes)
+#GREEN: читаем AdminScriptVar \n кофнигурационный файл \n\n с флешки;
+else (no)
+:process only
+__sequence__ and __activity__ diagrams;
+endif
+
+fork
+
+while (\nпроверяем crontab \n каждые 15 мин <b>ngrok</b> \n) is (YES)
+
+partition " NGROK.sh " {
+
+#RED:Выключаем ngrok;
+
+
+#GREEN: читаем AdminScriptVar \n кофнигурационный файл ;
+
+
+if (Бот на AWS?) then (ДА)
+: Режим бот на AWS./
+#YELLOW: Не запускаем ngrok;
+
+elseif (Режим использования) then (ДА)
+: Режим использования./
+#GREEN:Запускаем ngrok;
+
+elseif (Режим разработки) then (ДА)
+: Режим разработки./
+#GREEN:Запускаем ngrok;
+
+else (Ничего)
+
+: Режим бот выключен./
+#YELLOW: Не запускаем ngrok;
+
+endif
+
+
+}
+
+endwhile (NO)
+
+fork again
+
+while (проверяем crontab \n каждые 5 мин <b>gitnodejs</b>) is (YES)
+
+#AAAAAA: читаем AdminScriptVar \n кофнигурационный файл ;
+if (Флешка ?) then (yes)
+:process all\ndiagrams;
+else (no)
+:process only
+__sequence__ and __activity__ diagrams;
+endif
+
+partition " GitNode.js " {
+
+if (Бот на AWS?) then (yes)
+: Режим бот на AWS./
+
+elseif (Выключить Бота?) then (yes)
+: Режим выкл бота.;
+
+elseif (Режим разработки) then (yes)
+:Запускаем gitnodejs c git;
+
+else (nothing)
+:Запускаем gitnodejs без git;
+endif
+
+:Запускаем variable;
+
+}
+
+endwhile (NO)
+
+
+end fork
+
+
+
+-[#green,dashed]-> ей ей;
+repeat :foo as starting label;
+
+-[#blue]->
+#HotPink:read data;
+-[#black,dotted]->
+backward:This is backward;
+repeat while (больше?)
+
+-[#green,dashed]-> ла ла;
+
+
+stop
+
+@enduml
