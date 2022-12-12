@@ -1,19 +1,41 @@
 #!/bin/bash
 
-#USERBOT=""
+#
+#указывнается один раз при установке
+#
+USERBOT=""
 
 
 # если указали название флешки, то берет с флешки
 # название флешки
-#PATHFLASH=""
+
+#
+# можно менять во время эксплуатации
+#
+PATHFLASH=""
+
+#
+# можно менять во время эксплуатации
+#
+NAMEPROJECT=$USERBOT
 
 #если не указали название флешки, то берет с домашней директории
 #смотреть переменную $#PATHCONFBOT в файле  ../bin/init.sh
 #PATHCONFBOT="/home/$SUDO_USER/source/adminscript/conf"
 
 
-
+#
+# переменные постояные, менять нельзя
+#
 HOMEADMIN="/home/${USERBOT}/source/adminscript"
 HOMECRON="/home/${USERBOT}/source/crontabconf"
 HOMELOG="/home/${USERBOT}/log"
 
+
+#
+# AWS - запущен на AWS
+# USE - использование
+# DEV - разботка
+# OFF - выключен
+#
+MODEBOT="USE"

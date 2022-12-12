@@ -19,23 +19,38 @@ end note
 
 #HotPink: начало использования;
 
-if (Флешка вставлена ?) then (yes)
-#GREEN: читаем AdminScriptVar \n кофнигурационный файл \n\n с флешки;
-else (no)
-:process only
-__sequence__ and __activity__ diagrams;
-endif
+
 
 fork
 
-while (\nпроверяем crontab \n каждые 15 мин <b>ngrok</b> \n) is (YES)
+while (\nпроверяем crontab \n каждые 15 мин <b>ngrok.sh</b> \n) is (YES)
 
-partition " NGROK.sh " {
+
+partition " ngrok.sh " {
+
+partition " controlpath.sh " {
+
+#GREEN: Читаем AdminScriptVar \n кофнигурационный файл ;
+
+note right
+Динамический конфигурационный файл
+Переменная PATHKEY опеределяется автоматически
+end note
+
+
+if ( есть название флешки в PATHFLASH ? ) then (ДА)
+:читаем данные с директории
+на флешке в переменной PATHKEY;
+else (НЕТ)
+:читаем данные с директории
+локально в переменной PATHKEY;
+endif
+
+}
 
 #RED:Выключаем ngrok;
 
 
-#GREEN: читаем AdminScriptVar \n кофнигурационный файл ;
 
 
 if (Бот на AWS?) then (ДА)
