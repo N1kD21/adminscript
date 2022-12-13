@@ -4,7 +4,7 @@
 start
 
 
-#palegreen: **Start AdminScript** ;
+#palegreen: **Start ** ;
 floating note left: Логика настройки
 note right
 Два этапа:
@@ -15,22 +15,26 @@ note right
 ** Использование без разработки
 end note
 
-
-
 #HotPink: начало использования;
-
-
-
-fork
-
-while (\nпроверяем crontab \n каждые 15 мин <b>ngrok.sh</b> \n) is (YES)
-
-
-partition " ngrok.sh " {
 
 partition " controlpath.sh " {
 
-#GREEN: Читаем AdminScriptVar \n кофнигурационный файл ;
+#GREEN: Читаем AdminScriptVar  кофнигурационный файл
+====
+USERBOT=""
+PATHFLASH=""
+NAMEPROJECT=$USERBOT
+PATHCONFBOT="/home/$SUDO_USER/source/adminscript/conf"
+HOMEADMIN="/home/${USERBOT}/source/adminscript"
+HOMECRON="/home/${USERBOT}/source/crontabconf"
+HOMELOG="/home/${USERBOT}/log"
+MODEBOT="USE"
+=====
+# AWS - запущен на AWS
+# USE - использование
+# DEV - разботка
+# OFF - выключен;
+
 
 note right
 Динамический конфигурационный файл
@@ -40,17 +44,29 @@ end note
 
 if ( есть название флешки в PATHFLASH ? ) then (ДА)
 :читаем данные с директории
-на флешке в переменной PATHKEY;
+на флешке в переменной PATHKEY
+====
+PATHKEY=/mnt/$PATHFLASH/$USERBOT;
 else (НЕТ)
 :читаем данные с директории
-локально в переменной PATHKEY;
+локально в переменной PATHKEY
+====
+PATHKEY=/home/$USERBOT/source/${NAMEPROJECT}/conf;
 endif
 
 }
 
+fork
+
+while (\nпроверяем crontab \n каждые 15 мин <b>ngrok.sh</b> \n) is (YES)
+
+
+partition " ngrok.sh " {
+
+#GREEN: controlpath.sh
+перечитываем конфигурацию;
+
 #RED:Выключаем ngrok;
-
-
 
 
 if (Бот на AWS?) then (ДА)
@@ -79,32 +95,34 @@ endwhile (NO)
 
 fork again
 
-while (проверяем crontab \n каждые 5 мин <b>gitnodejs</b>) is (YES)
+while (\nпроверяем crontab \n каждые 5 мин <b>gitnodejs.sh</b>\n) is (YES)
 
-#AAAAAA: читаем AdminScriptVar \n кофнигурационный файл ;
-if (Флешка ?) then (yes)
-:process all\ndiagrams;
-else (no)
-:process only
-__sequence__ and __activity__ diagrams;
-endif
+partition " gitnodejs.sh " {
 
-partition " GitNode.js " {
+#GREEN: controlpath.sh
+перечитываем конфигурацию;
 
-if (Бот на AWS?) then (yes)
+#RED:Выключаем node;
+
+
+if (Бот на AWS?) then (ДА)
 : Режим бот на AWS./
-
-elseif (Выключить Бота?) then (yes)
-: Режим выкл бота.;
-
-elseif (Режим разработки) then (yes)
-:Запускаем gitnodejs c git;
-
-else (nothing)
-:Запускаем gitnodejs без git;
+#YELLOW: Не запускаем git;
+#YELLOW: Не запускаем nodejs;
+elseif (Режим использования) then (ДА)
+: Режим использования./
+#YELLOW: Не запускаем git;
+#GREEN:Запускаем nodejs;
+elseif (Режим разработки) then (ДА)
+: Режим разработки./
+#GREEN:Запускаем git;
+#GREEN:Запускаем nodejs;
+else (Ничего)
+: Режим бот выключен./
+#YELLOW: Не запускаем git;
+#YELLOW: Не запускаем nodejs;
 endif
 
-:Запускаем variable;
 
 }
 
@@ -113,16 +131,6 @@ endwhile (NO)
 
 end fork
 
-
-
--[#green,dashed]-> ей ей;
-repeat :foo as starting label;
-
--[#blue]->
-#HotPink:read data;
--[#black,dotted]->
-backward:This is backward;
-repeat while (больше?)
 
 -[#green,dashed]-> ла ла;
 

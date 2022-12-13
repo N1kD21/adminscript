@@ -125,9 +125,6 @@ else
 	                echo "ln -s ${HOMEADMIN}/gitnodejs.sh ${HOMECRON}"
 	                ln -v -s ${HOMEADMIN}/gitnodejs.sh ${HOMECRON}
 
-	                echo "ln -s ${HOMEADMIN}/variables_bash.sh ${HOMECRON}"
-	                ln -v -s ${HOMEADMIN}/variables_bash.sh ${HOMECRON}
-
 			# ngrok
 	                echo "ln -s ${HOMEADMIN}/ngrok.sh ${HOMECRON} "
 	                ln -v -s ${HOMEADMIN}/ngrok.sh ${HOMECRON}
@@ -142,7 +139,7 @@ else
 
 		                echo "touch ${HOMELOG}/ngrok.log"
 		                #cp -v ${HOMEADMIN}/ngrok.log ${HOMELOG}
-				touch ${HOMELOG}/ngrok.log 
+				touch ${HOMELOG}/ngrok.log
 				chown $USERBOT:$USERBOT ${HOMELOG}/ngrok.log
 
 		                #echo "cp -v  ${HOMEADMIN}/gitnodejs.log ${HOMELOG}"
@@ -213,6 +210,3 @@ else
 		exit
 	fi
 fi
-
-
-

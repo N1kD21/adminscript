@@ -14,18 +14,18 @@
 # /home/$USERBOT/source/adminscript/init/
 /home/$USERBOT/source/adminscript/init/setup.sh
 
- 
-#conf  
+
+#conf
 #TOKEN
 # /home/bot4voc/
 # /home/$USERBOT/source/adminscript/conf/
 
 
 
-#bin 
+#bin
 
 
-#log 
+#log
 
 
 #USB flash
@@ -47,7 +47,6 @@
 #CRON NODE.js
 # /home/bot4voc/
 /home/bot4voc/source/crontabconf/gitnodejs.sh
-/home/bot4voc/source/crontabconf/variables_bash.sh
 
 #SOURCE Bot - bot4voc
 /home/bot4voc/source/Module11/
@@ -56,4 +55,3 @@
 # /home/bot4voc/log
 /home/bot4voc/log/gitnodejs.log
 /home/bot4voc/log/ngrok.log
-

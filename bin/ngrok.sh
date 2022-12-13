@@ -26,9 +26,9 @@ PATHKEY=/mnt/$PATHFLASH/$USERBOT
 
 else
 
-PATHKEY=/home/$USERBOT/source/$NAMEPROJECT/conf
+PATHKEY=/home/$USERBOT/source/${NAMEPROJECT}/conf
 
-fi 
+fi
 
 
 if test -d $PATHKEY;
