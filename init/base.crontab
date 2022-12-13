@@ -4,6 +4,5 @@
 
 
 #Ngrok
-#*/15 * * * 1-7 . $HOME/source/crontabconf/ngrok.sh
-*/1 * * * 1-7 . $HOME/source/crontabconf/ngrok.sh
-
+#*/15 * * * 1-7 . $HOME/source/adminscript/bin/ngrok.sh 2>&1
+*/1 * * * 1-7 . $HOME/source/adminscript/bin/ngrok.sh 2>&1

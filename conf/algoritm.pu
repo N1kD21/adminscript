@@ -1,8 +1,15 @@
 @startuml
 
-
 start
 
+#DarkSeaGreen:  init |
+
+#Olive: crontab |
+
+stop
+
+
+start
 
 #palegreen: **Start ** ;
 floating note left: Логика настройки

@@ -1,4 +1,3 @@
-#!/bin/bash
 
 #
 #указывнается один раз при установке
@@ -27,9 +26,9 @@ NAMEPROJECT=$USERBOT
 #
 # переменные постояные, менять нельзя
 #
-HOMEADMIN="/home/${USERBOT}/source/adminscript"
-HOMECRON="/home/${USERBOT}/source/crontabconf"
-HOMELOG="/home/${USERBOT}/log"
+HOMEADMIN="/home/${USERBOT}/source/adminscript/bin"
+HOMEINIT="/home/${USERBOT}/source/adminscript/init"
+HOMELOG="/home/${USERBOT}/source/adminscript/log"
 
 
 #

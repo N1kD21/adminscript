@@ -3,7 +3,10 @@ echo "  "
 echo "  "
 echo "---------------------------------------------------------------------------------------------------------"
 echo "[`date +%d-%m-%Y\ %H:%M:%S`]"
-echo "/var/log/$2/crontabgitnodejs.log"
+#echo "/var/log/$2/crontabgitnodejs.log"
+
+LOG=$HOMELOG/gitnodejs.log
+echo "$LOG"
 
 
 echo "systemctl status cron"
