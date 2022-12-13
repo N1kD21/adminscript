@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATHCONFBOT="/home/$SUDO_USER/source/adminscript/bin"
+PATHCONFBOT="/home/$SUDO_USER/source/adminscript/conf"
 
 
 
@@ -53,12 +53,12 @@ use()
   ls -al -v /etc/udev/rules.d/99-local.rules
   ls -al -v /etc/systemd/system/usb-mount@.service
   ls -al -v /mnt/${PATHFLASH}
-	ls -al -v ${HOMELOG}
-	ls -al -v ${HOMEINIT}
-	ls -al -v /etc/logrotate.conf
-	ls -al -v /etc/logrotate.conf_old
-	crontab -l -u $USERBOT
-	exit 1
+  ls -al -v ${HOMELOG}
+  ls -al -v ${HOMEINIT}
+  ls -al -v /etc/logrotate.conf
+  ls -al -v /etc/logrotate.conf_old
+  crontab -l -u $USERBOT
+  exit 1
 }
 
 # загружаем конфигурационный файл с настройками
@@ -74,7 +74,7 @@ else
 	if  [ "$USERBOT" = "$SUDO_USER" ] && [ -n "$USERBOT" ] && [ -n "$SUDO_USER" ] ;
   	then
   		# install
-      .
+
   		if [ "$1" = "i" ]; then
   			#  автоматическое монтирование флешки
 
@@ -116,14 +116,14 @@ else
           				exit
   			else
           				mkdir -v ${HOMELOG}
-
-          		    echo "touch ${HOMELOG}/ngrok.log"
+					chown -v $USERBOT:$USERBOT ${HOMELOG}
+          		    		echo "touch ${HOMELOG}/ngrok.log"
           				touch ${HOMELOG}/ngrok.log
-          				chown $USERBOT:$USERBOT ${HOMELOG}/ngrok.log
+          				chown -v $USERBOT:$USERBOT ${HOMELOG}/ngrok.log
 
           				echo "touch ${HOMELOG}/gitnodejs.log"
           				touch ${HOMELOG}/gitnodejs.log
-          				chown $USERBOT:$USERBOT ${HOMELOG}/gitnodejs.log
+          				chown -v $USERBOT:$USERBOT ${HOMELOG}/gitnodejs.log
   			fi
 
   			# rotation log
@@ -134,8 +134,8 @@ else
           				mv /etc/logrotate.conf /etc/logrotate.conf_old
                   echo "ln -s ${HOMEINIT}/logrotate.conf /etc/logrotate.conf"
           		    ln -v -P ${HOMEINIT}/logrotate.conf /etc/logrotate.conf
-          				chown root:root /etc/logrotate.conf
-          				chmod 0644 /etc/logrotate.conf
+          				chown -v root:root /etc/logrotate.conf
+          				chmod -v 0644 /etc/logrotate.conf
   			fi
   		fi
   		# uninstall
