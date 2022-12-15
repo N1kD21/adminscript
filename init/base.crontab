@@ -1,8 +1,17 @@
 #Telegram
 #*/5 * * * 1-7  . /home/bot4voc/source/adminscript/crontabconf.conf ; $HOME/source/crontabconf/gitnodejs.sh t $LOGNAME >> /home/$LOGNAME/log/gitnodejs.log 2>&1
-*/1 * * * 1-7  . /home/bot4voc/source/adminscript/crontabconf.conf ; $HOME/source/crontabconf/gitnodejs.sh t $LOGNAME >> /home/$LOGNAME/log/gitnodejs.log 2>&1
+#*/1 * * * 1-7  . /home/bot4voc/source/adminscript/crontabconf.conf ; $HOME/source/crontabconf/gitnodejs.sh t $LOGNAME >> /home/$LOGNAME/log/gitnodejs.log 2>&1
+
+*/1 * * * 1-7 /$HOME/source/adminscript/bin/rungitnodejs.sh
+
 
 
 #Ngrok
 #*/15 * * * 1-7 . $HOME/source/adminscript/bin/ngrok.sh 2>&1
-*/1 * * * 1-7 . $HOME/source/adminscript/bin/ngrok.sh 2>&1
+#*/1 * * * 1-7 . $HOME/source/adminscript/bin/ngrok.sh 2>&1
+
+*/1 * * * 1-7 /$HOME/source/adminscript/bin/runngrok.sh
+
+*/1 * * * 1-7 /$HOME/source/adminscript/bin/run1.sh n 
+
+
