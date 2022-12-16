@@ -76,13 +76,21 @@ else
   		# install
 
   		if [ "$1" = "i" ]; then
+
+                        if test -f $PATHCONFBOT/AdminScriptVar ;
+                         then
+			  cp -v $PATHCONFBOT/AdminScriptVar $PATHKEY/
+                         else
+			  echo "File $PATHCONFBOT/AdminScriptVar is NOT empty"
+                        fi
+
   			#  автоматическое монтирование флешки
 
-  			echo "Установка автоматического монтирования"
+  			echo "Установка авто матического монтирования"
 
   			if test -f /etc/udev/rules.d/99-local.rules ;
   			then
-  		                echo "File is empty"
+  		                echo "File 99-local.rules is empty"
   			else
   	                        echo "ln -s ${HOMEINIT}/99-local.rules /etc/udev/rules.d/"
   	                        ln -v -s ${HOMEINIT}/99-local.rules /etc/udev/rules.d/
@@ -90,7 +98,7 @@ else
 
   	                if test -f /etc/systemd/system/usb-mount@.service ;
   	                then
-  	                        echo "File is empty"
+  	                        echo "File usb-mount@.service is empty"
   	                else
   				echo "ln -s ${HOMEINIT}/usb-mount@.service /etc/systemd/system/"
   		                ln -v -s ${HOMEINIT}/usb-mount@.service /etc/systemd/system/
@@ -98,7 +106,7 @@ else
 
   	                if test -f /usr/local/bin/usb-mount.sh ;
   	                then
-  	                        echo "File is empty"
+  	                        echo "File usb-mount.sh is empty"
   	                else
   		                echo "ln -s ${HOMEINIT}/usb-mount.sh /usr/local/bin/"
   		                ln -v -s ${HOMEINIT}/usb-mount.sh /usr/local/bin/
@@ -107,12 +115,19 @@ else
 
 
   			# crontab
-  			crontab -u $USERBOT ${HOMEINIT}/base.crontab
+
+                        if test -f ${HOMEINIT}/base.crontab ;
+                         then
+  			  crontab -u $USERBOT ${HOMEINIT}/base.crontab
+                         else
+                          echo "File $USERBOT ${HOMEINIT}/base.crontab is NOT empty"
+                        fi
+
 
   			# log
   			if test -d ${HOMELOG};
   			then
-          				echo "Directory is empty "
+          				echo "Directory ${HOMELOG} is empty "
           				exit
   			else
           				mkdir -v ${HOMELOG}
@@ -128,15 +143,16 @@ else
 
   			# rotation log
   			if test -f /etc/logrotate.conf_old ;
-          then
-                  echo "File is empty"
-          else
-          				mv /etc/logrotate.conf /etc/logrotate.conf_old
-                  echo "ln -s ${HOMEINIT}/logrotate.conf /etc/logrotate.conf"
-          		    ln -v -P ${HOMEINIT}/logrotate.conf /etc/logrotate.conf
-          				chown -v root:root /etc/logrotate.conf
-          				chmod -v 0644 /etc/logrotate.conf
+          		 then
+                  	  echo "File logrotate.conf_old is empty"
+          		 else
+          		  mv /etc/logrotate.conf /etc/logrotate.conf_old
+                  	  echo "ln -s ${HOMEINIT}/logrotate.conf /etc/logrotate.conf"
+          		  ln -v -P ${HOMEINIT}/logrotate.conf /etc/logrotate.conf
+          		  chown -v root:root /etc/logrotate.conf
+          		  chmod -v 0644 /etc/logrotate.conf
   			fi
+
   		fi
   		# uninstall
   		if [ "$1" = "d" ] ;
@@ -165,12 +181,13 @@ else
 
             		#logrotate del
 
-                if test -f /etc/logrotate.conf_old
+	                if test -f /etc/logrotate.conf_old
               		then
-                			echo "unlink /etc/logrotate.conf"
-                			unlink  /etc/logrotate.conf
-                			mv /etc/logrotate.conf_old /etc/logrotate.conf
+                	 echo "unlink /etc/logrotate.conf"
+                	 unlink  /etc/logrotate.conf
+                	 mv /etc/logrotate.conf_old /etc/logrotate.conf
               		fi
+			
   	    fi
   	else
   		id -un

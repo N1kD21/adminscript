@@ -5,12 +5,15 @@ selectPathKey()
 {
  if [ -n "$PATHFLASH" ] ;
   then
-    PATHKEY=/mnt/$PATHFLASH/$USERBOT
+    export PATHKEY="/mnt/$PATHFLASH/$USERBOT"
   else
-    PATHKEY=/home/$USERBOT/source/${NAMEPROJECT}/conf
+    export PATHKEY="/home/$USERBOT/source/${NAMEPROJECT}/conf"
   fi
 }
 
 # загружаем конфигурационный файл с настройками
 
 selectPathKey
+
+echo "просто PATHKEY -> $PATHKEY"
+echo "PATHFLASH -> $PATHFLASH"

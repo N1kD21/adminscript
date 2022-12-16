@@ -21,7 +21,7 @@ then
 	#eval `/usr/local/bin/ngrok http 8080 --log=$HOMELOG/ngrok.log --log-level=info &`
 	/usr/local/bin/ngrok http 8080 --log=$HOMELOG/ngrok.log --log-level=info &
 else
-        echo "ngrok couldn't be started"
+        echo "ngrok couldn't be started [`date +%d-%m-%Y\ %H:%M:%S`]"
 fi
 
 

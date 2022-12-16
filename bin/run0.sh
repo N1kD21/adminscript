@@ -3,8 +3,8 @@
 
 # исправить на правильный путь
 
-PATHCONFBOTUSER="/home/$LOGNAME/source/adminscript/conf"
-#PATHCONFBOT="/home/$SUDO_USER/source/adminscript/conf"
+PATHLOGNAME="/home/$LOGNAME/source/adminscript/conf"
+PATHSUDOUSER="/home/$SUDO_USER/source/adminscript/conf"
 
 printVar()
 {
@@ -38,21 +38,13 @@ loadconfUser()
 }
 # загружаем конфигурационный файл с настройками
 
-echo "до загрузки in run1" >> /home/bot4voc/source/adminscript/log/ngrok.log 2>&1
-echo "--------/ngrok.log " >> /home/bot4voc/source/adminscript/log/ngrok.log 2>&1
-printenv >> /home/bot4voc/source/adminscript/log/ngrok.log 2>&1
+#printenv
 
-#printVar >> $HOMELOG/ngrok.log 2>&1
-
-
-loadconfUser
-echo "после загрузки in run1" >> $HOMELOG/ngrok.log 2>&1
-printVar >> $HOMELOG/ngrok.log 2>&1
-
-echo "0 -> $0" >> $HOMELOG/ngrok.log 2>&1
-echo "1 -> $1" >> $HOMELOG/ngrok.log 2>&1
-echo "2 -> $2" >> $HOMELOG/ngrok.log 2>&1
+sudo -u bot4voc printenv
 
 
 
-#. $HOMEADMIN/ngrok.sh >> $HOMELOG/ngrok.log 2>&1
+#loadconfUser
+printVar
+
+
