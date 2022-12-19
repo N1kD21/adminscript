@@ -1,0 +1,69 @@
+@startuml
+
+start
+skinparam backgroundColor #ffffff
+
+
+skinparam Activity {
+
+StartColor #a3d779
+EndColor #a3d779
+BackgroundColor #fee3a2
+BorderColor #34c006
+ArrowColor #34c006
+
+
+}
+
+partition " 1. один раз " {
+
+'#a3d779
+
+:  создание пользователя
+adduser + sudo;
+
+#34c006: запускаем setup.sh ;
+
+#fee3a2:  правим AdminScriptVar
+(конфигурационный файл);
+
+}
+
+partition " 2. полуавтомат " {
+
+
+repeat : читаем AdminScriptVar;
+'skinparam repeatBackgroundColor #ffffff
+
+
+#34c006: запускаем init.sh ;
+
+: AdminScriptPATH="\~/source/adminscript/conf/";
+
+
+backward: правим AdminScriptVar;
+
+repeat while (правим файлы ngrok.sh gitnodejs.sh base.crontab?) is ( да) not ( нет);
+
+}
+
+
+partition " 3. автомат " {
+skinparam repeatBackgroundColor #fee3a2;
+
+'#fee3a2:
+repeat: читаем AdminScriptVar;
+
+: PATHKEY=""/
+
+#adcacb:  запускаем из под
+пользователя crontab |
+
+backward:правим AdminScriptVar;
+repeat while (crontab работает?) is ( да) not ( нет);
+
+}
+
+stop
+
+@enduml

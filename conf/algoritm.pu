@@ -1,13 +1,5 @@
 @startuml
 
-start
-
-#DarkSeaGreen:  init |
-
-#Olive: crontab |
-
-stop
-
 
 start
 
